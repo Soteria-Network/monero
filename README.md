@@ -5,6 +5,19 @@ Portions Copyright (c) 2012-2013 The Cryptonote developers.
 
 ### This is an experimental beginning to launch Monero but with blocks starting at 30s, then 15s, then dropping up to 12 or 9s. The mission is to keep the privacy of Monero but with a blazing fast block time, as in todays world no one really need to use slow coins!
 
+### Problems need to addressed:
+The network with CPU mining suffers from significant hashrate fluctuations in small chains, same behavior across all Monero forks:
+• Normal: ~1–2 MH/s
+• Peaks: 20–50 MH/s
+
+#### First Solution simple: Just implement LWMA3, but this alone won't solve the hashrate fluctuations, this will only temporarily improve the situation. There is still a risk of future hashrate manipulation attacks, as small hashrate and small chain cannot stand out against big hashrate!
+
+#### Second Solution moderate: Replace the current CPU mining algorithm with a faster and lighter one. Use ASERT or LWMA3; ASERT performs better with new CPU mining algorithms than LWMA3.
+
+#### Third Solution complex: Completely deactivate CPU mining, add GPU mining + LWMA3. This combined with LWMA3, should have a cumulative effect on solving the hashrate fluctuation problem and provide good protection against future hashrate manipulation attacks. Ultimately, completely remove the CPU mining algorithm.
+
+#### Verdict: Best solution for small chain GPU + LWMA3
+
 ## Table of Contents
 
   - [Development resources](#development-resources)
