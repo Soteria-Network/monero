@@ -1,7 +1,9 @@
-# Monero
+# Monero Reborn
 
-Copyright (c) 2014-2024, The Monero Project
+Copyright (c) 2026, The Monero Reborn Project
 Portions Copyright (c) 2012-2013 The Cryptonote developers.
+
+## This is an experimental beginning to launch Monero but with blocks starting at 30s, then 15s, then dropping up to 12 or 9s. The mission is to keep the privacy of Monero but with a blazing fast block time, as in todays world no one really need to use slow coins!
 
 ## Table of Contents
 
