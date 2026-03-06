@@ -91,7 +91,22 @@ namespace cryptonote {
       MERROR("Block cumulative weight is too big: " << current_block_weight << ", expected less than " << 2 * median_weight);
       return false;
     }
-
+    uint64_t base_reward = 0;
+    if (generated_coins < MONEY_SUPPLY)
+    {
+      const uint64_t halvings = height / EMISSION_HALVING_INTERVAL;
+      if (halvings < 64) // TODO: Smooth decay
+        base_reward = EMISSION_SUBSIDY >> halvings;
+      else
+        base_reward = 0;
+      const uint64_t remaining = MONEY_SUPPLY - generated_coins;
+      if (base_reward > remaining)
+        base_reward = remaining;
+    }
+    if (current_block_weight <= median_weight) {
+      reward = base_reward;
+      return true;
+    }
     uint64_t product_hi;
     // BUGFIX: 32-bit saturation bug (e.g. ARM7), the result was being
     // treated as 32-bit by default.
@@ -104,7 +119,7 @@ namespace cryptonote {
     div128_64(product_hi, product_lo, median_weight, &reward_hi, &reward_lo, NULL, NULL);
     div128_64(reward_hi, reward_lo, median_weight, &reward_hi, &reward_lo, NULL, NULL);
     assert(0 == reward_hi);
-    assert(reward_lo < base_reward);
+    assert(reward_lo < base_reward || base_reward == 0);
 
     reward = reward_lo;
     return true;
