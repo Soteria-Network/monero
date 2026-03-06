@@ -87,6 +87,16 @@ DISABLE_VS_WARNINGS(4267)
 // used to overestimate the block reward when estimating a per kB to use
 #define BLOCK_REWARD_OVERESTIMATE (10 * 1000000000000)
 
+namespace
+{
+constexpr uint32_t genesis_nonce = 2961763999; // change before release with a fresh date
+
+bool is_genesis_nonce()
+  {
+  return cryptonote::get_config(cryptonote::MAINNET).GENESIS_NONCE == genesis_nonce;
+  }
+} 
+
 //------------------------------------------------------------------
 Blockchain::Blockchain(tx_memory_pool& tx_pool) :
   m_db(), m_tx_pool(tx_pool), m_hardfork(NULL), m_timestamps_and_difficulties_height(0), m_reset_timestamps_and_difficulties_height(true), m_current_block_cumul_weight_limit(0), m_current_block_cumul_weight_median(0),
@@ -303,6 +313,11 @@ bool Blockchain::init(BlockchainDB* db, const network_type nettype, bool offline
   m_nettype = test_options != NULL ? FAKECHAIN : nettype;
   m_offline = offline;
   m_fixed_difficulty = fixed_difficulty;
+  if (m_nettype == MAINNET && !is_genesis_nonce())
+  {
+    MERROR("Genesis nonce mismatch; expected " << genesis_nonce);
+    return false;
+  }
   if (m_hardfork == nullptr)
   {
     if (m_nettype ==  FAKECHAIN || m_nettype == STAGENET)
