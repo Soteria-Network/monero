@@ -103,8 +103,8 @@
 #define BATCH_MAX_ALLOWED_WEIGHT                        50     //maximum allowed size of batch in [mB]
 #define BLOCKS_MAX_WINDOW                               CRYPTONOTE_REWARD_BLOCKS_WINDOW  //Window to find the historical max block weight (100 blocks)
 
-#define CRYPTONOTE_MEMPOOL_TX_LIVETIME                    (86400*3) //seconds, three days
-#define CRYPTONOTE_MEMPOOL_TX_FROM_ALT_BLOCK_LIVETIME     604800 //seconds, one week
+#define CRYPTONOTE_MEMPOOL_TX_LIVETIME                    (129600) //seconds, three days
+#define CRYPTONOTE_MEMPOOL_TX_FROM_ALT_BLOCK_LIVETIME     259200 //seconds, one week
 
 
 #define CRYPTONOTE_DANDELIONPP_STEMS              2 // number of outgoing stem connections per epoch
