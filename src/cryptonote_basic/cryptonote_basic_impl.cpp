@@ -92,14 +92,14 @@ namespace cryptonote {
       return false;
     }
     uint64_t base_reward = 0;
-    if (generated_coins < MONEY_SUPPLY)
+    if (already_generated_coins < MONEY_SUPPLY)
     {
       const uint64_t halvings = height / EMISSION_HALVING_INTERVAL;
       if (halvings < 64) // TODO: Smooth decay
         base_reward = EMISSION_SUBSIDY >> halvings;
       else
         base_reward = 0;
-      const uint64_t remaining = MONEY_SUPPLY - generated_coins;
+      const uint64_t remaining = MONEY_SUPPLY - already_generated_coins;
       if (base_reward > remaining)
         base_reward = remaining;
     }
