@@ -297,7 +297,7 @@ namespace config
         0x3a, 0xd4, 0x7f, 0x9b, 0x21, 0xee, 0x4c, 0x5a, 0x8f, 0x02, 0x13, 0x99, 0xab, 0xcd, 0xef, 0x55
       } }; // Turbonero network id
     std::string const GENESIS_TX = "013c01ff0001ffffffffffff0302df5d56da0c7d643ddd1ce61901c7bdc5fb1738bfe39fbe69c28a3a7032729c0f2101168d0c4ca86fb55a4cf6a36d31431be1c53a3bd7411bb24e8832410289fa6f3b";
-    uint32_t const GENESIS_NONCE = 10002;
+    uint32_t const GENESIS_NONCE = 31226;
   }
 }
 
