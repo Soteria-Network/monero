@@ -16,7 +16,9 @@ The network with CPU mining suffers from significant hashrate fluctuations in sm
 
 #### Third Solution complex: Completely deactivate CPU mining, add GPU mining + LWMA3. This combined with LWMA3, should have a cumulative effect on solving the hashrate fluctuation problem and provide good protection against future hashrate manipulation attacks. Ultimately, completely remove the CPU mining algorithm.
 
-#### Verdict: Best solution for small chain GPU + LWMA3
+###### I'm still making consensus changes. I probably have 3-4 months of work before testnet would be up.
+
+###### The block reward will adjust dynamically based on the coin’s average exchange price, using an endogenous metric with a high correlation coefficient. Implementing an immediate 50% halving instead of a gradual smooth-decay mechanism can cause major economic distortions and can render many cryptocurrencies unusable for day-to-day usage.
 
 ## Table of Contents
 
