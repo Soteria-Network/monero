@@ -5450,11 +5450,23 @@ void Blockchain::cancel()
 }
 
 #if defined(PER_BLOCK_CHECKPOINT)
-static const char expected_block_hashes_hash[] = "e60d8cd6d77f55df0874bddc4e0e1c7e387374b95180aa5f172bc83abc7cb799";
+static const char expected_block_hashes_hash[] = "To be add it before release";
+static const char monero_mainnet_genesis_tx[] = "013c01ff0001ffffffffffff03029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121017767aafcde9be00dcfd098715ebcf7f410daebc582fda69d24a28e9d0bc890d1";
+static constexpr uint32_t monero_mainnet_genesis_nonce = 10000;
+static bool is_monero_mainnet_genesis()
+{
+  const auto &cfg = get_config(MAINNET);
+  return cfg.GENESIS_NONCE == monero_mainnet_genesis_nonce && cfg.GENESIS_TX == monero_mainnet_genesis_tx;
+}
 void Blockchain::load_compiled_in_block_hashes(const GetCheckpointsCallback& get_checkpoints)
 {
   if (get_checkpoints == nullptr || !m_fast_sync)
   {
+    return;
+  }
+  if (m_nettype == MAINNET && !is_monero_mainnet_genesis())
+  {
+    MINFO("Skipping precomputed block hashes: custom genesis");
     return;
   }
   const epee::span<const unsigned char> &checkpoints = get_checkpoints(m_nettype);
