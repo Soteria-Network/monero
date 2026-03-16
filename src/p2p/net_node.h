@@ -301,8 +301,7 @@ namespace nodetool
     virtual void clear_used_stripe_peers();
 
   private:
-    const std::vector<std::string> m_seed_nodes_list =
-    { "seed.turbomonero.xyz" };
+     const std::vector<std::string> m_seed_nodes_list = {};
 
     bool islimitup=false;
     bool islimitdown=false;
