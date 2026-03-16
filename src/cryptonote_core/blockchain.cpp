@@ -1400,6 +1400,13 @@ bool Blockchain::validate_miner_transaction(const block& b, size_t cumulative_bl
     money_in_use += o.amount;
   partial_block_reward = false;
 
+  // Accept and record actual genesis coinbase amount for supply tracking
+  if (height == 0)
+  {
+    base_reward = money_in_use - fee;
+    return true;
+  }  
+  
   if (version == 3) {
     for (auto &o: b.miner_tx.vout) {
       if (!is_valid_decomposed_amount(o.amount)) {
