@@ -211,7 +211,7 @@ namespace cryptonote
       return true;
     }
     ADD_CHECKPOINT2(1,     "new mainnet hash", "0x2");
-    
+    // Mainnet (Turbonero): Add new checkpoints.
     return true;
   }
 
