@@ -255,7 +255,7 @@ namespace cryptonote
 
     /**
      * @brief Chooses transactions for a block to include
-     *
+     * @param height the block height at which it will be mined
      * @param bl return-by-reference the block to fill in with transactions
      * @param median_weight the current median block weight
      * @param already_generated_coins the current total number of coins "minted"
@@ -266,7 +266,7 @@ namespace cryptonote
      *
      * @return true
      */
-    bool fill_block_template(block &bl, size_t median_weight, uint64_t already_generated_coins, size_t &total_weight, uint64_t &fee, uint64_t &expected_reward, uint8_t version);
+    bool fill_block_template(block &bl, uint64_t height, size_t median_weight, uint64_t already_generated_coins, size_t &total_weight, uint64_t &fee, uint64_t &expected_reward, uint8_t version);
 
     /**
      * @brief get a list of all transactions in the pool
