@@ -1469,7 +1469,7 @@ namespace cryptonote
      *
      * This function makes sure that the miner calculated his reward correctly
      * and that his miner transaction totals reward + fee.
-     *
+     * @param height the block height at which it will be added
      * @param b the block containing the miner transaction to be validated
      * @param cumulative_block_weight the block's weight
      * @param fee the total fees collected in the block
@@ -1480,7 +1480,7 @@ namespace cryptonote
      *
      * @return false if anything is found wrong with the miner transaction, otherwise true
      */
-    bool validate_miner_transaction(const block& b, size_t cumulative_block_weight, uint64_t fee, uint64_t& base_reward, uint64_t already_generated_coins, bool &partial_block_reward, uint8_t version);
+    bool validate_miner_transaction(const block& b, size_t cumulative_block_weight, uint64_t fee, uint64_t& base_reward, uint64_t already_generated_coins, uint64_t height, bool &partial_block_reward, uint8_t version);
 
     /**
      * @brief reverts the blockchain to its previous state following a failed switch
