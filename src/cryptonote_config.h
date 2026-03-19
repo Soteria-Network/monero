@@ -43,13 +43,13 @@
 #define CRYPTONOTE_PUBLIC_ADDRESS_TEXTBLOB_VER          0
 #define CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW            60
 #define CURRENT_TRANSACTION_VERSION                     2
-#define CURRENT_BLOCK_MAJOR_VERSION                     1
-#define CURRENT_BLOCK_MINOR_VERSION                     0
+#define CURRENT_BLOCK_MAJOR_VERSION                     0
+#define CURRENT_BLOCK_MINOR_VERSION                     1
 #define CRYPTONOTE_BLOCK_FUTURE_TIME_LIMIT              60 // prevents miners from pushing timestamps far ahead to manipulate difficulty.
 #define CRYPTONOTE_DEFAULT_TX_SPENDABLE_AGE             10
 
-#define BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW               60
-#define CRYPTONOTE_DISPLAY_DECIMAL_POINT                12
+#define BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW               30 // def 60
+#define CRYPTONOTE_DISPLAY_DECIMAL_POINT                12 // TODO 8 Bitcoin compatible
 // COIN - number of smallest units in one coin
 #define COIN                                            ((uint64_t)1000000000000) // pow(10, 12), define before use to avoid errors
 // MONEY_SUPPLY - total number coins to be generated
@@ -94,11 +94,11 @@
 #define DIFFICULTY_BLOCKS_ESTIMATE_TIMESPAN             DIFFICULTY_TARGET_V1 //just alias; used by tests
 
 
-#define BLOCKS_IDS_SYNCHRONIZING_DEFAULT_COUNT          10000  //by default, blocks ids count in synchronizing
+#define BLOCKS_IDS_SYNCHRONIZING_DEFAULT_COUNT          10000  //by default, blocks ids count in synchronizing , TODO 80000
 #define BLOCKS_IDS_SYNCHRONIZING_MAX_COUNT              25000  //max blocks ids count in synchronizing
 #define BLOCKS_SYNCHRONIZING_DEFAULT_COUNT_PRE_V4       100    //by default, blocks count in blocks downloading
 #define BLOCKS_SYNCHRONIZING_DEFAULT_COUNT              20     //by default, blocks count in blocks downloading
-#define BLOCKS_SYNCHRONIZING_MAX_COUNT                  2048   //must be a power of 2, greater than 128, equal to SEEDHASH_EPOCH_BLOCKS
+#define BLOCKS_SYNCHRONIZING_MAX_COUNT                  2048   //must be a power of 2, greater than 128, equal to SEEDHASH_EPOCH_BLOCKS, TODO increase this value!
 #define BATCH_MAX_WEIGHT                                10     //by default, maximum size of batch in [mB]
 #define BATCH_MAX_ALLOWED_WEIGHT                        50     //maximum allowed size of batch in [mB]
 #define BLOCKS_MAX_WINDOW                               CRYPTONOTE_REWARD_BLOCKS_WINDOW  //Window to find the historical max block weight (100 blocks)
@@ -107,20 +107,20 @@
 #define CRYPTONOTE_MEMPOOL_TX_FROM_ALT_BLOCK_LIVETIME     259200 //seconds, one week
 
 
-#define CRYPTONOTE_DANDELIONPP_STEMS              2 // number of outgoing stem connections per epoch
-#define CRYPTONOTE_DANDELIONPP_FLUFF_PROBABILITY 20 // out of 100
-#define CRYPTONOTE_DANDELIONPP_MIN_EPOCH         10 // minutes
-#define CRYPTONOTE_DANDELIONPP_EPOCH_RANGE       30 // seconds
-#define CRYPTONOTE_DANDELIONPP_FLUSH_AVERAGE      5 // seconds average for poisson distributed fluff flush
-#define CRYPTONOTE_DANDELIONPP_EMBARGO_AVERAGE   39 // seconds (see tx_pool.cpp for more info)
+#define CRYPTONOTE_DANDELIONPP_STEMS              4 // number of outgoing stem connections per epoch, def 2, better security
+#define CRYPTONOTE_DANDELIONPP_FLUFF_PROBABILITY 10 // out of 100, def 20, longer stem period
+#define CRYPTONOTE_DANDELIONPP_MIN_EPOCH         20 // minutes, def 10, decrease load
+#define CRYPTONOTE_DANDELIONPP_EPOCH_RANGE       60 // seconds, def 30, improve epoch
+#define CRYPTONOTE_DANDELIONPP_FLUSH_AVERAGE     10 // seconds average for poisson distributed fluff flush, def 5
+#define CRYPTONOTE_DANDELIONPP_EMBARGO_AVERAGE   78 // seconds (see tx_pool.cpp for more info), def 39, longer period
 
 // see src/cryptonote_protocol/levin_notify.cpp
-#define CRYPTONOTE_NOISE_MIN_EPOCH                      5      // minutes
-#define CRYPTONOTE_NOISE_EPOCH_RANGE                    30     // seconds
-#define CRYPTONOTE_NOISE_MIN_DELAY                      10     // seconds
-#define CRYPTONOTE_NOISE_DELAY_RANGE                    5      // seconds
+#define CRYPTONOTE_NOISE_MIN_EPOCH                      10      // minutes
+#define CRYPTONOTE_NOISE_EPOCH_RANGE                    60     // seconds
+#define CRYPTONOTE_NOISE_MIN_DELAY                      20     // seconds
+#define CRYPTONOTE_NOISE_DELAY_RANGE                    10      // seconds
 #define CRYPTONOTE_NOISE_BYTES                          3*1024 // 3 KiB
-#define CRYPTONOTE_NOISE_CHANNELS                       2      // Max outgoing connections per zone used for noise/covert sending
+#define CRYPTONOTE_NOISE_CHANNELS                       4      // Max outgoing connections per zone used for noise/covert sending
 
 // Both below are in seconds. The idea is to delay forwarding from i2p/tor
 // to ipv4/6, such that 2+ incoming connections _could_ have sent the tx
@@ -140,7 +140,7 @@
 #define P2P_LOCAL_WHITE_PEERLIST_LIMIT                  1000
 #define P2P_LOCAL_GRAY_PEERLIST_LIMIT                   5000
 
-#define P2P_DEFAULT_CONNECTIONS_COUNT                   12
+#define P2P_DEFAULT_CONNECTIONS_COUNT                   24
 #define P2P_DEFAULT_HANDSHAKE_INTERVAL                  60           //secondes
 #define P2P_DEFAULT_PACKET_MAX_SIZE                     50000000     //50000000 bytes maximum packet size
 #define P2P_DEFAULT_PEERS_IN_HANDSHAKE                  250
