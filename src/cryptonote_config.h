@@ -81,8 +81,8 @@
 #define DIFFICULTY_TARGET_V2                            15  // seconds
 #define DIFFICULTY_TARGET_V1                            15  // seconds - before first fork // use 15 for both in testnet phase
 #define DIFFICULTY_WINDOW                               60 // blocks , will test 45,60,75 & 90 
-#define DIFFICULTY_LAG                                  15  // !!!
-#define DIFFICULTY_CUT                                  60  // timestamps to cut after sorting
+#define DIFFICULTY_LAG                                  2  // 2  blocks instead of 15
+#define DIFFICULTY_CUT                                  6  // 6 timestamps instead of 60 to cut after sorting
 #define DIFFICULTY_BLOCKS_COUNT                         DIFFICULTY_WINDOW + DIFFICULTY_LAG
 
 
